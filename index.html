@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de Texto</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+        </style>        
+</head>
+<body>
+    <header class="header">
+        <img src="sources/logo.png" alt="Logo do Encriptador" class="logo">
+    </header>
+
+    <main class="container">
+        <section class="left-section">
+            <textarea id="input-text" class="campo__textarea" placeholder="Escreva seu texto aqui"></textarea>
+        </section>
+        <img src="sources/arrow.png"> 
+        <section class="right-section">
+            <textarea id="output-text" class="campo__textarea" placeholder="Resultado sairá aqui" readonly></textarea>
+        </section>
+    </main>
+
+    <div class="button-container">
+        <button class="btn" onclick="encrypt()">Criptografar</button>
+        <button class="btn" onclick="decrypt()">Descriptografar</button>
+        <button class="btn" onclick="copyToClipboard()">Copiar</button>
+    </div>
+
+    <script>
+        function encrypt() {
+            let inputText = document.getElementById('input-text').value.toLowerCase();
+            let outputText = inputText.replace(/e/g, "enter")
+                                      .replace(/i/g, "imes")
+                                      .replace(/a/g, "ai")
+                                      .replace(/o/g, "ober")
+                                      .replace(/u/g, "ufat");
+            document.getElementById('output-text').value = outputText;
+        }
+
+        function decrypt() {
+            let inputText = document.getElementById('input-text').value.toLowerCase();
+            let outputText = inputText.replace(/enter/g, "e")
+                                      .replace(/imes/g, "i")
+                                      .replace(/ai/g, "a")
+                                      .replace(/ober/g, "o")
+                                      .replace(/ufat/g, "u");
+            document.getElementById('output-text').value = outputText;
+        }
+
+        function copyToClipboard() {
+            let outputText = document.getElementById('output-text');
+            outputText.select();
+            document.execCommand('copy');
+            alert('Texto copiado para a área de transferência!');
+        }
+    </script>
+</body>
+</html>
